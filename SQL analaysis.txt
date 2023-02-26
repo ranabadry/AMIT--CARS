@@ -1,0 +1,28 @@
+Cars DB
+
+Q : who is the most productive dealer? 
+A : Joes Autos
+SELECT dealer_name,count(*) as deals_number 
+FROM Customer_Ownership inner join Dealers on Customer_Ownership.dealer_id==Dealers.dealer_id group by dealer_name
+
+Q : what is the major gender of our customers ? 
+A : female
+SELECT gender,count(*) as gender_count
+FROM Customer_Ownership ci inner join customers c on ci.customer_id==c.customer_id group by gender
+
+Q : what are the Brands that Joes Autos sells?
+A : Cover Squirrel,Yellow,Freshest,Boujiee
+SELECT brand_name FROM Brands b inner join 
+(SELECT *
+FROM Dealer_Brand ci inner join Dealers c on ci.dealer_id==c.dealer_id ) t
+on b.brand_id==t.brand_id where dealer_name == 'Joes Autos'
+
+
+Q : What are the Models these Brands provide?
+A : The Blonde,The Brunette,The Red Head,Blue,Green,Orange,Extra,Too Much,Bars,Beats
+SELECT model_name FROM Models m inner join 
+(SELECT *
+FROM Dealer_Brand ci inner join Dealers c on ci.dealer_id==c.dealer_id ) t
+on m.brand_id==t.brand_id where t.dealer_name == 'Joes Autos'
+
+
